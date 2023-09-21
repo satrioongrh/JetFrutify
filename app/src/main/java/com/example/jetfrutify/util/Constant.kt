@@ -1,0 +1,15 @@
+package com.example.jetfrutify.util
+
+object Constant {
+    val PREF_EMAIL = "PREF_EMAIL"
+    val PREF_USERNAME = "PREF_USERNAME"
+    val PREF_USER_ID = "PREF_USER_ID"
+    val PREF_USER_EMAIL = "PREF_USER_EMAIL"
+    val PREF_USER_PHONE = "PREF_USER_PHONE"
+    val PREF_PASSWORD = "PREF_PASSWORD"
+    val PREF_USER_FULLNAME = "PREF_USER_FULLNAME"
+    val PREF_USER_ADDRESS = "PREF_USER_ADDRESS"
+    val PREF_TOKEN = "PREF_TOKEN"
+    val PREF_TOKEN_EXP = "PREF_TOKEN_EXP"
+    val PREF_USER_ROLE = "USER_ROLE"
+}

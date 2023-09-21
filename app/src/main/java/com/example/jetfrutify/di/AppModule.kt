@@ -1,10 +1,14 @@
 package com.example.jetfrutify.di
 
+import android.content.Context
+import com.example.jetfrutify.data.datastore.Datastore
+import com.example.jetfrutify.data.datastore.DatastoreImpl
 import com.example.jetfrutify.data.repository.remote.RemoteRepository
 import com.example.jetfrutify.data.retrofit.ApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -18,7 +22,7 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun providePokeApi() : ApiService {
+    fun providePokeApi(): ApiService {
         val loggingInterceptor =
             HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
         val client = OkHttpClient.Builder()
@@ -34,6 +38,12 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideRepository(apiService: ApiService) : RemoteRepository = RemoteRepository(apiService)
+    fun provideRepository(apiService: ApiService, datastore: Datastore): RemoteRepository = RemoteRepository(apiService, datastore)
+
+    @Singleton
+    @Provides
+    fun provideDatastore(
+        @ApplicationContext context: Context
+    ) : Datastore = DatastoreImpl(context)
 
 }

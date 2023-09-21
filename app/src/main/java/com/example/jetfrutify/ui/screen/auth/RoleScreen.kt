@@ -36,7 +36,8 @@ import com.example.jetfrutify.ui.theme.DarkBlue
 
 @Composable
 fun RoleScreen(
-    navController: NavHostController
+    navController: NavHostController,
+    viewModel: RoleViewModel
 ) {
     Box(
         modifier = Modifier
@@ -93,6 +94,7 @@ fun RoleScreen(
                     textColor = Color(0xFFFFFFFF),
                     color = DarkBlue,
                     onCLick = {
+                        viewModel.saveRole("Buyer")
                         navController.navigate(Screen.Login.route){
                             popUpTo(Screen.Role.route){
                                 inclusive = true
@@ -105,6 +107,7 @@ fun RoleScreen(
                     textColor = Color.Black,
                     color = Color(0xFFFFFFFF),
                     onCLick = {
+                        viewModel.saveRole("Seller")
                         navController.navigate(Screen.Register.route)
                     }
                 )

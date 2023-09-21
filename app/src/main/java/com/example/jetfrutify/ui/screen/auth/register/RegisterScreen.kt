@@ -10,13 +10,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material.icons.filled.Call
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -56,13 +56,9 @@ fun RegisterScreen(
     var phone by remember {
         mutableStateOf("")
     }
-    var role by remember {
-        mutableStateOf("")
-    }
-    var stateTextField = listOf(email, password, phone, role)
-    val label = listOf("email", "password", "phone", "role")
     val context = LocalContext.current
     val lifecycleowner = LocalLifecycleOwner.current
+    val role = viewModel.getRole().collectAsState(initial = "buyer").value
 
     Box(
         modifier = Modifier
@@ -96,13 +92,6 @@ fun RegisterScreen(
                 label = "phone",
                 icon = Icons.Default.Call,
                 onValueChange = { phone = it }
-            )
-            Spacer(modifier = Modifier.height(20.dp))
-            TextFieldAuth(
-                value = role,
-                label = "role",
-                icon = Icons.Default.AddCircle,
-                onValueChange = { role = it }
             )
             Spacer(modifier = Modifier.height(12.dp))
             ButtonAuth(text = "Sign Up", onCLick = {

@@ -2,11 +2,14 @@ package com.example.jetfrutify.data.repository.remote
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
+import com.example.jetfrutify.data.datastore.Datastore
 import com.example.jetfrutify.data.response.LoginResponse
 import com.example.jetfrutify.data.response.RegisterResponse
 import com.example.jetfrutify.data.responsehandler.Result
 import com.example.jetfrutify.data.retrofit.ApiService
+import com.example.jetfrutify.util.Constant
 import dagger.hilt.android.scopes.ActivityScoped
+import kotlinx.coroutines.runBlocking
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -14,7 +17,8 @@ import javax.inject.Inject
 
 @ActivityScoped
 class RemoteRepository @Inject constructor(
-    private val apiService: ApiService
+    private val apiService: ApiService,
+    private val dataStore: Datastore
 ) {
 
     private val loginResult = MediatorLiveData<Result<LoginResponse>>()
@@ -27,6 +31,35 @@ class RemoteRepository @Inject constructor(
                 val resp = response.body()
                 if (resp?.sTATUS == "SUCCESS") {
                     loginResult.value = Result.Success(resp)
+                    dataStore.apply {
+                        runBlocking {
+                            putInt(
+                                Constant.PREF_USER_ID,
+                                resp.pAYLOAD?.user?.uSERID ?: 0
+                            )
+                            putString(
+                                Constant.PREF_EMAIL,
+                                resp.pAYLOAD?.user?.uSEREMAIL ?: ""
+                            )
+                            putString(
+                                Constant.PREF_USER_PHONE,
+                                resp.pAYLOAD?.user?.uSERPHONE ?: ""
+                            )
+                            putString(
+                                Constant.PREF_USER_FULLNAME,
+                                resp.pAYLOAD?.user?.uSERFULLNAME ?: ""
+                            )
+                            putString(
+                                Constant.PREF_USER_ROLE,
+                                resp.pAYLOAD?.user?.uSERROLE ?: ""
+                            )
+                            putString(
+                                Constant.PREF_USER_ADDRESS,
+                                resp.pAYLOAD?.user?.uSERADDRESS ?: ""
+                            )
+
+                        }
+                    }
                 } else {
                     loginResult.value =
                         Result.Error("Login failed. Please check your email and/or password.")
@@ -64,6 +97,10 @@ class RemoteRepository @Inject constructor(
         })
         return registerResult
     }
+
+    suspend fun saveRole(roleValue: String) = dataStore.putString(Constant.PREF_USER_ROLE, roleValue)
+
+    suspend fun getRole() = dataStore.getString(Constant.PREF_USER_ROLE)
 
 //    fun doLogin(email: String, password: String) : Result<LoginResponse> {
 //        Log.d("TAGerr", "doLogin: terpanggil repo")

@@ -6,6 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.jetfrutify.ui.screen.auth.RoleScreen
+import com.example.jetfrutify.ui.screen.auth.RoleViewModel
 import com.example.jetfrutify.ui.screen.auth.login.LoginScreen
 import com.example.jetfrutify.ui.screen.auth.login.LoginViewModel
 import com.example.jetfrutify.ui.screen.auth.register.RegisterScreen
@@ -17,9 +18,10 @@ fun Navigation () {
     val navController = rememberNavController()
     val loginViewModel: LoginViewModel = hiltViewModel()
     val registerViewModel: RegisterViewModel = hiltViewModel()
+    val roleViewModel: RoleViewModel = hiltViewModel()
     NavHost(navController = navController, startDestination = Screen.Role.route){
         composable(Screen.Role.route){
-            RoleScreen(navController = navController)
+            RoleScreen(navController = navController, viewModel = roleViewModel)
         }
         composable(Screen.Login.route){
             LoginScreen(viewModel = loginViewModel, navController = navController)
