@@ -13,6 +13,8 @@ import com.example.jetfrutify.ui.screen.auth.register.RegisterScreen
 import com.example.jetfrutify.ui.screen.auth.register.RegisterViewModel
 import com.example.jetfrutify.ui.screen.cart.CartScreen
 import com.example.jetfrutify.ui.screen.home.HomeScreen
+import com.example.jetfrutify.ui.screen.home.HomeViewModel
+import com.example.jetfrutify.ui.screen.home.seller.HomeSellerScreen
 import com.example.jetfrutify.ui.screen.profile.ProfileScreen
 
 @Composable
@@ -20,6 +22,7 @@ fun Navigation (navController: NavHostController) {
     val loginViewModel: LoginViewModel = hiltViewModel()
     val registerViewModel: RegisterViewModel = hiltViewModel()
     val roleViewModel: RoleViewModel = hiltViewModel()
+    val homeViewModel: HomeViewModel = hiltViewModel()
     NavHost(navController = navController, startDestination = Screen.Role.route){
         composable(Screen.Role.route){
             RoleScreen(navController = navController, viewModel = roleViewModel)
@@ -28,13 +31,13 @@ fun Navigation (navController: NavHostController) {
             LoginScreen(viewModel = loginViewModel, navController = navController)
         }
         composable(Screen.Home.route){
-            HomeScreen(navController = navController)
+            HomeScreen(navController = navController, viewModel = homeViewModel)
         }
         composable(Screen.Register.route) {
             RegisterScreen(navController = navController, viewModel = registerViewModel)
         }
         composable(Screen.HomeBottomBar.route){
-            HomeScreen(navController = navController)
+            HomeSellerScreen(navController = navController, viewModel = homeViewModel)
         }
         composable(Screen.Cart.route){
             CartScreen()

@@ -1,4 +1,4 @@
-package com.example.jetfrutify.data.response
+package com.example.jetfrutify.data.response.authresponse
 
 import com.google.gson.annotations.SerializedName
 

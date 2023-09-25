@@ -8,8 +8,9 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 
 @Composable
-fun HomeScreen(navController: NavHostController) {
+fun HomeScreen(navController: NavHostController, viewModel: HomeViewModel) {
     Column (modifier = Modifier.fillMaxSize()) {
         Text(text = "hello")
     }
+    viewModel.getProduct()
 }

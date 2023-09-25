@@ -1,5 +1,6 @@
 package com.example.jetfrutify.ui.screen.auth
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -39,6 +40,11 @@ fun RoleScreen(
     navController: NavHostController,
     viewModel: RoleViewModel
 ) {
+    val isLogin = viewModel.isLogin()
+    if (isLogin == true){
+        navController.navigate(Screen.Home.route)
+    }
+    Log.d("fead", "RoleScreen: $isLogin")
     Box(
         modifier = Modifier
             .fillMaxSize()

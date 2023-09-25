@@ -3,6 +3,7 @@ package com.example.jetfrutify.di
 import android.content.Context
 import com.example.jetfrutify.data.datastore.Datastore
 import com.example.jetfrutify.data.datastore.DatastoreImpl
+import com.example.jetfrutify.data.repository.remote.RemoteProductRepository
 import com.example.jetfrutify.data.repository.remote.RemoteRepository
 import com.example.jetfrutify.data.retrofit.ApiService
 import dagger.Module
@@ -39,6 +40,10 @@ object AppModule {
     @Singleton
     @Provides
     fun provideRepository(apiService: ApiService, datastore: Datastore): RemoteRepository = RemoteRepository(apiService, datastore)
+
+    @Singleton
+    @Provides
+    fun provideProductRepository(apiService: ApiService, datastore: Datastore): RemoteProductRepository = RemoteProductRepository(apiService, datastore)
 
     @Singleton
     @Provides

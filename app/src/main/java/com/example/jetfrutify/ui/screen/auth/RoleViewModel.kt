@@ -9,10 +9,13 @@ import javax.inject.Inject
 @HiltViewModel
 class RoleViewModel @Inject constructor(
     private val repository: RemoteRepository
-) : ViewModel(){
+) : ViewModel() {
 
     fun saveRole(roleValue: String) = runBlocking {
         repository.saveRole(roleValue)
     }
 
+    fun isLogin() = runBlocking {
+        repository.getLoginData()
+    }
 }

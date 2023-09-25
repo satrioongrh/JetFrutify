@@ -1,8 +1,8 @@
-package com.example.jetfrutify.data.response
+package com.example.jetfrutify.data.response.authresponse
 
 import com.google.gson.annotations.SerializedName
 
-data class RegisterResponse(
+data class LoginResponse(
 
 	@field:SerializedName("MESSAGE")
 	val mESSAGE: String? = null,
@@ -14,5 +14,11 @@ data class RegisterResponse(
 	val sENDER: String? = null,
 
 	@field:SerializedName("PAYLOAD")
-	val pAYLOAD: Any? = null
+	val pAYLOAD: PAYLOAD? = null
+)
+
+data class PAYLOAD(
+
+	@field:SerializedName("user")
+	val user: User? = null
 )

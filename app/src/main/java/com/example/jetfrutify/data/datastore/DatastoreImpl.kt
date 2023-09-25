@@ -3,12 +3,12 @@ package com.example.jetfrutify.data.datastore
 import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.first
 import javax.inject.Inject
 
 private val Context.datastore: DataStore<Preferences> by preferencesDataStore("USER_PREFERENCES")
@@ -30,17 +30,39 @@ class DatastoreImpl @Inject constructor(
         }
     }
 
-    override suspend fun getString(key: String): Flow<String> {
-        val prefKey = stringPreferencesKey(key)
-        return context.datastore.data.map {
-            it[prefKey] ?: "empty"
+    override suspend fun putBoolean(key: String, value: Boolean) {
+        val prefKey = booleanPreferencesKey(key)
+        context.datastore.edit {
+            it[prefKey] = value
         }
     }
 
-    override suspend fun getInt(key: String): Flow<Int> {
+    override suspend fun getString(key: String): String? {
+        val prefKey = stringPreferencesKey(key)
+        val prefeerence = context.datastore.data.first()
+        return prefeerence[prefKey]
+    }
+
+    override suspend fun getInt(key: String): Int? {
         val prefKey = intPreferencesKey(key)
-        return context.datastore.data.map {
-            it[prefKey] ?: 0
+        val prefeerence = context.datastore.data.first()
+        return prefeerence[prefKey]
+    }
+
+    override suspend fun getBoolean(key: String): Boolean? {
+        val prefKey = booleanPreferencesKey(key)
+        val prefeerence = context.datastore.data.first()
+        return prefeerence[prefKey]
+    }
+
+    override suspend fun clearPref(key: String) {
+        val prefKey = stringPreferencesKey(key)
+        context.datastore.edit {
+            if (it.contains(prefKey)){
+                it.remove(prefKey)
+            }
         }
     }
+
+
 }

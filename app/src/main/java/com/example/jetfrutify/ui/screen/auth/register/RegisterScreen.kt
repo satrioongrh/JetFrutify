@@ -16,7 +16,6 @@ import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -58,7 +57,7 @@ fun RegisterScreen(
     }
     val context = LocalContext.current
     val lifecycleowner = LocalLifecycleOwner.current
-    val role = viewModel.getRole().collectAsState(initial = "buyer").value
+    val role = viewModel.getRole()
 
     Box(
         modifier = Modifier
@@ -95,7 +94,7 @@ fun RegisterScreen(
             )
             Spacer(modifier = Modifier.height(12.dp))
             ButtonAuth(text = "Sign Up", onCLick = {
-                val registerResult = viewModel.doRegister(email, password, phone, role)
+                val registerResult = viewModel.doRegister(email, password, phone, role!!)
                 registerResult.observe(lifecycleowner){
                     if (it is Result.Success){
                         navController.navigate(Screen.Login.route)
