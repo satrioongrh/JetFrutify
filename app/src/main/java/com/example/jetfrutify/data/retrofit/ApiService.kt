@@ -2,11 +2,15 @@ package com.example.jetfrutify.data.retrofit
 
 import com.example.jetfrutify.data.response.authresponse.LoginResponse
 import com.example.jetfrutify.data.response.authresponse.RegisterResponse
+import com.example.jetfrutify.data.response.clasifyresponse.PredictResponse
 import com.example.jetfrutify.data.response.productresponse.ListProductResponse
+import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
+import retrofit2.http.Multipart
 import retrofit2.http.POST
+import retrofit2.http.Part
 
 interface ApiService {
 
@@ -32,5 +36,11 @@ interface ApiService {
         @Field("search") search: String? = null,
         @Field("user_id") userId: Int? = null
     ) : Call<ListProductResponse>
+
+    @Multipart
+    @POST("predict")
+    fun doImagePredict(
+        @Part image: MultipartBody.Part
+    ): Call<PredictResponse>
 
 }

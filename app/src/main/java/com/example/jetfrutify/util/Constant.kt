@@ -8,4 +8,8 @@ object Constant {
     val PREF_USER_ADDRESS = "PREF_USER_ADDRESS"
     val PREF_USER_ROLE = "USER_ROLE"
     val PREF_IS_LOGIN = "ISlOGIN"
+
+    val BASE_URL = "https://frutifyapishapi-v1-qvsopsldnq-uc.a.run.app/"
+    val BASE_URL_2 = "https://frutifyapis-v1-qvsopsldnq-uc.a.run.app/"
+    val BASE_URL_3 = "http://192.168.100.6:80/"
 }

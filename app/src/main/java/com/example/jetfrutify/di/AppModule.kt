@@ -30,7 +30,7 @@ object AppModule {
             .addInterceptor(loggingInterceptor)
             .build()
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://frutifyapishapi-v1-qvsopsldnq-uc.a.run.app/")
+            .baseUrl("http://192.168.100.6:80/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()

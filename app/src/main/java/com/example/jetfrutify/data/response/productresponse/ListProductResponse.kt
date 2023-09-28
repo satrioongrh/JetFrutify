@@ -20,7 +20,7 @@ data class ListProductResponse(
 data class PAYLOAD(
 
 	@field:SerializedName("product")
-	val product: List<ProductItem?>? = null
+	val product: List<ProductItem>? = null
 )
 
 data class ProductItem(

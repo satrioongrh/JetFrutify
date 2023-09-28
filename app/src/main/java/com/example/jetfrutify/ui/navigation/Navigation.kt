@@ -16,6 +16,7 @@ import com.example.jetfrutify.ui.screen.home.HomeScreen
 import com.example.jetfrutify.ui.screen.home.HomeViewModel
 import com.example.jetfrutify.ui.screen.home.seller.HomeSellerScreen
 import com.example.jetfrutify.ui.screen.profile.ProfileScreen
+import com.example.jetfrutify.ui.screen.upload.UploadScreen
 
 @Composable
 fun Navigation (navController: NavHostController) {
@@ -44,6 +45,9 @@ fun Navigation (navController: NavHostController) {
         }
         composable(Screen.Profile.route){
             ProfileScreen()
+        }
+        composable(Screen.Upload.route){
+            UploadScreen(navController = navController)
         }
     }
 }

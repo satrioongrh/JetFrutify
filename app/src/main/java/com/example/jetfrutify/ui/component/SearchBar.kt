@@ -2,6 +2,7 @@ package com.example.jetfrutify.ui.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -17,8 +18,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.jetfrutify.ui.screen.home.HomeViewModel
 import com.example.jetfrutify.ui.theme.DarkBlue
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -26,6 +27,7 @@ import com.example.jetfrutify.ui.theme.DarkBlue
 fun Searchbar(
     value: String,
     onValueChange: (String) -> Unit = {},
+    viewModel: HomeViewModel
 ) {
     Box(
         modifier = Modifier
@@ -51,19 +53,13 @@ fun Searchbar(
                     imageVector = Icons.Default.Search,
                     contentDescription = "search",
                     modifier = Modifier
+                        .clickable {
+                            viewModel.getProduct(value)
+                        }
                 )
             },
             placeholder = { Text(text = "Search...") },
 
             )
     }
-}
-
-@Preview
-@Composable
-fun prevSearchBar() {
-    Searchbar(value = ""){
-
-    }
-
 }

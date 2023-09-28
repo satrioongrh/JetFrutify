@@ -18,11 +18,11 @@ class RemoteProductRepository @Inject constructor(
     private val dataStore: Datastore
 ) {
 
-    private val resultProduct = MediatorLiveData<Result<List<ProductItem?>?>>()
+    private val resultProduct = MediatorLiveData<Result<List<ProductItem>?>>()
 
     suspend fun getProduct(
         search: String? = null,
-    ) : LiveData<Result<List<ProductItem?>?>> {
+    ) : LiveData<Result<List<ProductItem>?>> {
         val roleUser = dataStore.getString(Constant.PREF_USER_ROLE)
         var userId: Int? = null
         if (roleUser == "SELLER"){
