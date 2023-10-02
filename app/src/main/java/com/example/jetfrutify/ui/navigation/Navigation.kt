@@ -16,6 +16,8 @@ import com.example.jetfrutify.ui.screen.home.HomeScreen
 import com.example.jetfrutify.ui.screen.home.HomeViewModel
 import com.example.jetfrutify.ui.screen.home.seller.HomeSellerScreen
 import com.example.jetfrutify.ui.screen.profile.ProfileScreen
+import com.example.jetfrutify.ui.screen.upload.CameraScreen
+import com.example.jetfrutify.ui.screen.upload.ClasifyViewModel
 import com.example.jetfrutify.ui.screen.upload.UploadScreen
 
 @Composable
@@ -24,6 +26,7 @@ fun Navigation (navController: NavHostController) {
     val registerViewModel: RegisterViewModel = hiltViewModel()
     val roleViewModel: RoleViewModel = hiltViewModel()
     val homeViewModel: HomeViewModel = hiltViewModel()
+    val clasifyViewModel: ClasifyViewModel = hiltViewModel()
     NavHost(navController = navController, startDestination = Screen.Role.route){
         composable(Screen.Role.route){
             RoleScreen(navController = navController, viewModel = roleViewModel)
@@ -48,6 +51,9 @@ fun Navigation (navController: NavHostController) {
         }
         composable(Screen.Upload.route){
             UploadScreen(navController = navController)
+        }
+        composable(Screen.Camera.route){
+            CameraScreen(navController = navController, viewModel = clasifyViewModel)
         }
     }
 }

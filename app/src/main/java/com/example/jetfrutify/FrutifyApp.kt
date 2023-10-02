@@ -28,7 +28,8 @@ fun FrutifyApp() {
             if (currentRoute != Screen.Role.route &&
                 currentRoute != Screen.Login.route &&
                 currentRoute != Screen.Register.route &&
-                currentRoute != Screen.Upload.route
+                currentRoute != Screen.Upload.route &&
+                currentRoute != Screen.Camera.route
             ) {
                 BottomBar(navController)
             }

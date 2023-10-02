@@ -39,6 +39,7 @@ fun HomeSellerScreen(
     viewModel: HomeViewModel
 ) {
     val lifecycleOwner = LocalLifecycleOwner.current
+
     val listIconFruit = listOf(
         ButtonFruit(
             "Apples",

@@ -38,7 +38,7 @@ interface ApiService {
     ) : Call<ListProductResponse>
 
     @Multipart
-    @POST("predict")
+    @POST("fruit/classify")
     fun doImagePredict(
         @Part image: MultipartBody.Part
     ): Call<PredictResponse>

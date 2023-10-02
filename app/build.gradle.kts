@@ -7,12 +7,12 @@ plugins {
 
 android {
     namespace = "com.example.jetfrutify"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.jetfrutify"
         minSdk = 24
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -98,5 +98,13 @@ dependencies {
 
     //coil
     implementation("io.coil-kt:coil-compose:2.4.0")
-    
+
+    //accompanist
+    implementation ("com.google.accompanist:accompanist-permissions:0.32.0")
+
+    //cameraX
+    implementation ("androidx.camera:camera-camera2:1.3.0-rc01")
+    implementation ("androidx.camera:camera-lifecycle:1.3.0-rc01")
+    implementation ("androidx.camera:camera-view:1.3.0-rc01")
+    implementation ("androidx.camera:camera-extensions:1.3.0-rc01")
 }
